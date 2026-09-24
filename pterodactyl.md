@@ -306,3 +306,22 @@ select username,password from users;
 | phileasfogg3 | $2y$10$PwO0TBZA8hLB6nuSsxRqoOuXuGi3I4AVVN2IgE7mZJLzky1vGC9Pi |
 +--------------+--------------------------------------------------------------+
 ```
+
+The algorithm prefix ($2y$) identifies the hash as bcrypt, which is Hashcat mode 3200, as shown below:
+
+#### Identify Hashcat mode
+
+```
+hashcat -h | grep -i bcrypt
+```
+
+#### Output:
+
+```
+   3200 | bcrypt $2*$, Blowfish (Unix)                               | Operating System
+  25600 | bcrypt(md5($pass)) / bcryptmd5                             | Forums, CMS, E-Commerce
+  25800 | bcrypt(sha1($pass)) / bcryptsha1                           | Forums, CMS, E-Commerce
+  28400 | bcrypt(sha512($pass)) / bcryptsha512                       | Forums, CMS, E-Commerce
+```
+
+
