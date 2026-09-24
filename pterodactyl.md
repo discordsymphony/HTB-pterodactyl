@@ -428,19 +428,19 @@ gzip xfs.img
 scp xfs.img.gz phileasfogg3@pterodactyl.htb:/tmp/
 ```
 
-Now we want to log back into the pteradactyl machine:
+Now we must log back into the pteradactyl machine:
 
 ```
 ssh phileasfogg3@pterodactyl.htb
 ```
 
-And now we want to gunzip the xfs.img.gz file:
+And then unzip the xfs.img.gz file:
 
 ```
 gunzip /tmp/xfs.img.gz
 ```
 
-Finally, we want to run exploit.sh, like so:
+Finally, we run exploit.sh, like so:
 
 ```
 ./exploit.sh -e xfs.img
