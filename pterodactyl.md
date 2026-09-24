@@ -307,21 +307,16 @@ select username,password from users;
 +--------------+--------------------------------------------------------------+
 ```
 
-The algorithm prefix ```$2y$``` identifies the hash as bcrypt, which is Hashcat mode 3200, as shown below:
+The algorithm prefix ```$2y$``` identifies the hash as bcrypt, which can easily be cracked using John the Ripper:
 
-#### Identify Hashcat mode
+#### Cracking with John
 
 ```
-hashcat -h | grep -i bcrypt
+john hashes.txt -w=/usr/share/wordlists/rockyou.txt
 ```
 
 #### Output:
 
 ```
-   3200 | bcrypt $2*$, Blowfish (Unix)                               | Operating System
-  25600 | bcrypt(md5($pass)) / bcryptmd5                             | Forums, CMS, E-Commerce
-  25800 | bcrypt(sha1($pass)) / bcryptsha1                           | Forums, CMS, E-Commerce
-  28400 | bcrypt(sha512($pass)) / bcryptsha512                       | Forums, CMS, E-Commerce
+
 ```
-
-
