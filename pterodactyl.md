@@ -21,6 +21,58 @@ PORT     STATE  SERVICE    VERSION
 
 ## User -> wwwrun
 
-Visiting the web server on port 80 reveals a MonitorLand landing page, which appears to be related to the game Minecraft. 
+Visiting the web server on port 80, reveals a MonitorLand landing page, which appears to be related to the game Minecraft: 
 
 <img src="Images/01-Landing-Page.png" width="600">
+
+The landing page also reveals the play.pterodactyl.htb subdomain, which we can add to our **/etc/hosts** file, shown below.
+
+Before moving on, let's search for any more subdomains.
+
+#### Running FFUF:
+
+```
+ffuf -w /opt/useful/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u http://pterodactyl.htb/ -H 'Host: FUZZ.pterodactyl.htb' -fc 302
+```
+
+#### Output:
+
+```
+        /'___\  /'___\           /'___\       
+       /\ \__/ /\ \__/  __  __  /\ \__/       
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
+         \ \_\   \ \_\  \ \____/  \ \_\       
+          \/_/    \/_/   \/___/    \/_/       
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://pterodactyl.htb/
+ :: Wordlist         : FUZZ: /opt/useful/seclists/Discovery/DNS/subdomains-top1million-5000.txt
+ :: Header           : Host: FUZZ.pterodactyl.htb
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+ :: Filter           : Response status: 302
+________________________________________________
+
+panel                   [Status: 200, Size: 1897, Words: 490, Lines: 36, Duration: 269ms]
+```
+
+As we can see, FFUF returns to us the subdomain "panel". Let's add these to our /etc/hosts file:
+
+#### Editing hosts file:
+
+```
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+127.0.0.1 localhost
+127.0.1.1 htb-06gjp1juuo htb-06gjp1juuo.htb-cloud.com
+10.129.92.38    pterodactyl.htb play.pterodactyl.htb panel.pterodactyl.htb
+```
