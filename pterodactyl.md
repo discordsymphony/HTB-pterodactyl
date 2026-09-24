@@ -1,4 +1,4 @@
-<img width="640" height="449" alt="image" src="https://github.com/user-attachments/assets/85ff6ccc-6812-4275-bfe1-bd7a8d362827" /># HTB-pterodactyl
+# HTB-pterodactyl
 
 We will begin this machine by using Nmap to scan the server for all open TCP ports, service versions and perform script scanning:
 
