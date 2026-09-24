@@ -63,7 +63,7 @@ panel                   [Status: 200, Size: 1897, Words: 490, Lines: 36, Duratio
 
 As we can see, FFUF returns to us the subdomain "panel". Let's add these to our **/etc/hosts** file:
 
-#### Editing hosts file:
+#### Viewing hosts file:
 
 ```
 cat /etc/hosts
