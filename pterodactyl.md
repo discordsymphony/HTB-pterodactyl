@@ -332,3 +332,45 @@ ssh phileasfogg3@pterodactyl.htb
 ```
 
 ## phileasfogg3 -> Root
+
+After initial enumeration of the machine, we discover that we can read phileasfogg3's mail:
+
+```
+cat /var/mail/phileasfogg3 
+```
+
+#### Output:
+
+```
+Attention all users,
+
+Unusual activity has been observed from the udisks daemon (udisksd). No confirmed compromise at this time, but increased vigilance is required.
+
+Do not connect untrusted external media. Review your sessions for suspicious activity. Administrators should review udisks and system logs and apply pending updates.
+
+Report any signs of compromise immediately to headmonitor@pterodactyl.htb
+
+— HeadMonitor
+System Administrator
+```
+
+This opened up a couple possibilities. The first was that there is a vulnerability in the udisks daemon. The second was a possible social engineering attack against headmonitor@pterodactyl. After attempting (and failing) a phishing attack using Swaks, I decided to return to finding a CVE for the udisks daemon.
+
+The first thing we have to do now is find the current version of udisks daemon:
+
+```
+/usr/lib/udisks2/udisksd
+```
+
+#### Output:
+
+```
+udisks-Message: 15:45:40.703: udisks daemon version 2.9.2 starting
+```
+
+This indicated we are working with udisks daemon v2.9.2.
+
+A search for related CVEs, resulted in finding the following exploit:
+
+<img src="Images/04-CVE-6019.png" width="400">
+
