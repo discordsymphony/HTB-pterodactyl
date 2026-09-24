@@ -3,7 +3,7 @@
 We will begin this machine by using Nmap to scan the server for all open TCP ports, service versions and perform script scanning:
 
 ```bash
-nmap -p0-65535 -sCV 10.129.91.107
+nmap -p0-65535 -sCV 10.129.91.107 --open
 ```
 
 ### Results:
@@ -85,3 +85,41 @@ ff02::2 ip6-allrouters
 ```
 
 ---
+
+#### Viewing changelogs file:
+
+If we click on the changelogs link on the landing page, we receive the following information:
+
+```
+MonitorLand - CHANGELOG.txt
+======================================
+
+Version 1.20.X
+
+[Added] Main Website Deployment
+--------------------------------
+- Deployed the primary landing site for MonitorLand.
+- Implemented homepage, and link for Minecraft server.
+- Integrated site styling and dark-mode as primary.
+
+[Linked] Subdomain Configuration
+--------------------------------
+- Added DNS and reverse proxy routing for play.pterodactyl.htb.
+- Configured NGINX virtual host for subdomain forwarding.
+
+[Installed] Pterodactyl Panel v1.11.10
+--------------------------------------
+- Installed Pterodactyl Panel.
+- Configured environment:
+  - PHP with required extensions.
+  - MariaDB 11.8.3 backend.
+
+[Enhanced] PHP Capabilities
+-------------------------------------
+- Enabled PHP-FPM for smoother website handling on all domains.
+- Enabled PHP-PEAR for PHP package management.
+- Added temporary PHP debugging via phpinfo()
+```
+
+What immediately jumps out is Pterodactyl Panel v1.11.10, which will be the technology for the panel subdomain we just discovered. Let's search for exploits related to this version:
+
