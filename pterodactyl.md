@@ -25,7 +25,7 @@ Visiting the web server on port 80, reveals a MonitorLand landing page, which ap
 
 <img src="Images/01-Landing-Page.png" width="600">
 
-The landing page also reveals the play.pterodactyl.htb subdomain. Before moving on, let's search for any more subdomains.
+The landing page also reveals the play.pterodactyl.htb subdomain and a changelogs file. Before moving on, let's search for any more subdomains.
 
 #### Running FFUF:
 
@@ -83,3 +83,5 @@ ff02::2 ip6-allrouters
 127.0.1.1 htb-06gjp1juuo htb-06gjp1juuo.htb-cloud.com
 10.129.92.38    pterodactyl.htb play.pterodactyl.htb panel.pterodactyl.htb
 ```
+
+---
