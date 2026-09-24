@@ -175,7 +175,7 @@ What appears to be happening is a cURL request is being made where cURL is setti
 include_path	.:/usr/share/php8:/usr/share/php/PEAR	.:/usr/share/php8:/usr/share/php/PEAR
 ```
 
-According to AI, the pearcmd.php file exists in different paths depending on the Linux Distribution, OS version or custom PHP installation. Therefore, by updating the script we can reattempt our code execution exploit:
+According to AI, the pearcmd.php file exists in different paths depending on the Linux Distribution, OS version or custom PHP installation. Therefore, by updating the script we can reattempt our RCE exploit:
 
 #### Updated script:
 
