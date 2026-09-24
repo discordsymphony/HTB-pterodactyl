@@ -1,4 +1,4 @@
-# HTB-pterodactyl
+<img width="640" height="449" alt="image" src="https://github.com/user-attachments/assets/85ff6ccc-6812-4275-bfe1-bd7a8d362827" /># HTB-pterodactyl
 
 We will begin this machine by using Nmap to scan the server for all open TCP ports, service versions and perform script scanning:
 
@@ -25,7 +25,7 @@ Visiting the web server on port 80, reveals a MonitorLand landing page, which ap
 
 <img src="Images/01-Landing-Page.png" width="600">
 
-The landing page also reveals the play.pterodactyl.htb subdomain and a changelogs file. Before moving on, let's search for any more subdomains.
+The landing page also reveals the **play.pterodactyl.htb** subdomain and a **changelogs.txt** file. Before moving on, let's search for any more subdomains.
 
 #### Running FFUF:
 
@@ -84,6 +84,10 @@ ff02::2 ip6-allrouters
 10.129.92.38    pterodactyl.htb play.pterodactyl.htb panel.pterodactyl.htb
 ```
 
+Visiting panel.pterodactyl.htb presents us with the following login page:
+
+<img src="Images/03-Panel-Page.png" width="600">
+
 ---
 
 #### Viewing changelogs file:
@@ -121,11 +125,11 @@ Version 1.20.X
 - Added temporary PHP debugging via phpinfo()
 ```
 
-What immediately jumps out is Pterodactyl Panel v1.11.10, which will be the technology for the panel subdomain we just discovered and that PHP debugging has been enabled via phpinfo(). First, let's search for exploits related to this version of Pterodactyl Panel:
+What immediately jumps out is **Pterodactyl Panel v1.11.10**, which will be the technology for the panel subdomain we just discovered and that PHP debugging has been enabled via **phpinfo()**. First, let's search for exploits related to this version of Pterodactyl Panel:
 
 <img src="Images/02-Vulnerability-3.png" width="600">
 
-We discovered a CVE number. Research into this CVE presents us with the following exploit:
+We discovered **CVE-2025-49132**. Research into this presents us with the following exploit:
 
 <img src="Images/02-Vulnerability-2.png" width="600">
 
