@@ -25,9 +25,7 @@ Visiting the web server on port 80, reveals a MonitorLand landing page, which ap
 
 <img src="Images/01-Landing-Page.png" width="600">
 
-The landing page also reveals the play.pterodactyl.htb subdomain, which we can add to our **/etc/hosts** file, shown below.
-
-Before moving on, let's search for any more subdomains.
+The landing page also reveals the play.pterodactyl.htb subdomain. Before moving on, let's search for any more subdomains.
 
 #### Running FFUF:
 
@@ -63,11 +61,20 @@ ________________________________________________
 panel                   [Status: 200, Size: 1897, Words: 490, Lines: 36, Duration: 269ms]
 ```
 
-As we can see, FFUF returns to us the subdomain "panel". Let's add these to our /etc/hosts file:
+As we can see, FFUF returns to us the subdomain "panel". Let's add these to our **/etc/hosts** file:
 
 #### Editing hosts file:
 
 ```
+cat /etc/hosts
+```
+
+#### Output:
+
+```
+127.0.0.1	localhost
+127.0.1.1	pwnbox7.1
+
 # The following lines are desirable for IPv6 capable hosts
 ::1     localhost ip6-localhost ip6-loopback
 ff02::1 ip6-allnodes
