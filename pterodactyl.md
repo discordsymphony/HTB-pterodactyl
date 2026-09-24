@@ -88,7 +88,8 @@ Visiting panel.pterodactyl.htb presents us with the following login page:
 
 <img src="Images/03-Panel-Page.png" width="400">
 
----
+On the other hand, play.pterodactyl.htb simply residents us back to the landing page.
+
 
 #### Viewing changelogs file:
 
