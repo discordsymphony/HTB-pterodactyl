@@ -20,3 +20,7 @@ PORT     STATE  SERVICE    VERSION
 ```
 
 ## User -> wwwrun
+
+Visiting the web server on port 80 reveals a MonitorLand landing page, which appears to be related to the game Minecraft. 
+
+<img src="Images/01-Landing-Page.png" width="600">
