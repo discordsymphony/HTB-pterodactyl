@@ -478,6 +478,7 @@ nc -lvnp 4444
 ```
 ./exploit.sh -e xfs.img
 ```
+The exploit executes successfully and our listener catches the root shell:
 
 #### Output:
 
