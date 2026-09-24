@@ -370,7 +370,12 @@ udisks-Message: 15:45:40.703: udisks daemon version 2.9.2 starting
 
 This indicated we are working with udisks daemon v2.9.2.
 
-A search for related CVEs, resulted in finding the following exploit:
+A search for related CVEs, resulted in finding the following CVE:
 
 <img src="Images/04-CVE-6019.png" width="400">
+
+Searching for related exploits returned the following proof of concept exploit:
+
+<img src="Images/05-CVE-6018-6019.png" width="400">
+
 
