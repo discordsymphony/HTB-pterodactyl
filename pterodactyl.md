@@ -121,5 +121,13 @@ Version 1.20.X
 - Added temporary PHP debugging via phpinfo()
 ```
 
-What immediately jumps out is Pterodactyl Panel v1.11.10, which will be the technology for the panel subdomain we just discovered. Let's search for exploits related to this version:
+What immediately jumps out is Pterodactyl Panel v1.11.10, which will be the technology for the panel subdomain we just discovered. Let's search for exploits related to this version. First we discover a CVE number:
+
+<img src="Images/02-Vulnerability-3.png" width="600">
+
+<img src="Images/02-Vulnerability-1.png" width="600">
+
+Research into this CVE presents us with the following exploit:
+
+<img src="Images/02-Vulnerability-2.png" width="600">
 
