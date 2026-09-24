@@ -307,7 +307,7 @@ select username,password from users;
 +--------------+--------------------------------------------------------------+
 ```
 
-The algorithm prefix ($2y$) identifies the hash as bcrypt, which is Hashcat mode 3200, as shown below:
+The algorithm prefix \$2y\$ identifies the hash as bcrypt, which is Hashcat mode 3200, as shown below:
 
 #### Identify Hashcat mode
 
