@@ -372,11 +372,11 @@ This indicated we are working with udisks daemon v2.9.2.
 
 A search for related CVEs, resulted in finding the following CVE:
 
-<img src="Images/04-CVE-6019.png" width="400">
+<img src="Images/04-CVE-6019.png" width="600">
 
 Searching for exploits returned the following PoC:
 
-<img src="Images/05-CVE-6018-6019.png" width="400">
+<img src="Images/05-CVE-6018-6019.png" width="600">
 
 https://github.com/DesertDemons/CVE-2025-6018-6019
 
