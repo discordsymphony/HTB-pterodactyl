@@ -128,11 +128,11 @@ Version 1.20.X
 
 What immediately jumps out is **Pterodactyl Panel v1.11.10**, which will be the technology for the panel subdomain we just discovered and that PHP debugging has been enabled via **phpinfo()**. First, let's search for exploits related to this version of Pterodactyl Panel:
 
-<img src="Images/02-Vulnerability-3.png" width="400">
+<img src="Images/02-Vulnerability-3.png" width="600">
 
 We discovered **CVE-2025-49132**. Research into this presents us with the following exploit:
 
-<img src="Images/02-Vulnerability-2.png" width="400">
+<img src="Images/02-Vulnerability-2.png" width="600">
 
 https://github.com/0xtensho/CVE-2025-49132-poc/
 
