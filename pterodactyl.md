@@ -428,7 +428,7 @@ gzip xfs.img
 scp xfs.img.gz phileasfogg3@pterodactyl.htb:/tmp/
 ```
 
-Now we must log back into the pteradactyl machine:
+Now we must log back into the pterodactyl machine:
 
 ```
 ssh phileasfogg3@pterodactyl.htb
