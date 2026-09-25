@@ -23,7 +23,7 @@ PORT     STATE  SERVICE    VERSION
 
 Visiting the web server on port 80, reveals a MonitorLand landing page, which appears to be related to the game Minecraft: 
 
-<img src="Images/01-Landing-Page.png" width="600">
+<img src="Images/01-Landing-Page.png" width="500">
 
 The landing page also reveals the **play.pterodactyl.htb** subdomain and a **changelogs.txt** file. Before moving on, let's search for any more subdomains.
 
