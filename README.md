@@ -21,7 +21,7 @@ Enumeration as phileasfogg3 revealed that we could read his mail, where it was d
 
 | Finding         | Severity     | Impact                                                         |
 | :-------------- | :----------- | :------------------------------------------------------------- |
-| CVE-2025-49132 | Critical: 10 | Unauthenticated Remote Code Execution on a remote server running Pterodactyl Panel|
+| CVE-2025-49132 | Critical: 10 | Unauthenticated Remote Code Execution on a remote server running Pterodactyl Panel <= 1.11.10. |
 | CVE-2025-6018 | Critical: 7.8 | Authenticated privilege escalation on local machine. |
 | CVE-2025-6019 | Critical: 7.0 | Authenticated Udisks Remote Code Execution leading to privilege escalation on local machine. |
 
