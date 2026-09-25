@@ -3,7 +3,7 @@
 We will begin this machine by using Nmap to scan the server for all open TCP ports, service versions and perform script scanning:
 
 ```bash
-nmap -p0-65535 -sCV 10.129.91.107 --open
+nmap -p0-65535 -sCV 10.129.92.38 --open
 ```
 
 ### Results:
