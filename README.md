@@ -23,6 +23,6 @@ Enumeration as phileasfogg3 revealed that we could read his mail, where it was d
 | :-------------- | :----------- | :------------------------------------------------------------- |
 | CVE&#8209;2025&#8209;49132 | Critical:&nbsp;10 | Unauthenticated Remote Code Execution on a remote server running Pterodacty Panel 1.11.10. |
 | CVE&#8209;2025&#8209;6018 | High:&nbsp;7.8 | Authenticated privilege escalation on local machine. |
-| CVE&#8209;2025&#8209;6019 | High:&nbsp;7.0 | Authenticated Udisks Remote Code Execution leading to privilege escalation on local machine. |
+| CVE&#8209;2025&#8209;6019 | High:&nbsp;7.0 | Authenticated udisksd Remote Code Execution leading to privilege escalation on local machine. |
 
 
