@@ -489,3 +489,19 @@ bash-4.4# whoami
 whoami
 root
 ```
+
+## Appendix
+
+#### Default credentials in CUPS printer service.
+
+Forwarding the CUPS port, we discover OpenPrinting CUPS 2.4.10 is running:
+
+```
+ssh phileasfogg3@pterodactyl.htb -L 323:localhost:323
+```
+<img src="Images/06-CUPS.png" width="600">
+
+By clicking on Administration, We can actually log into the panel using the username and password ```root:root```.
+
+Moreover, we can add and remove printers using this service, however, while some CUPS exploits exist, I did not achieve code execution.
+
