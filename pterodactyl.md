@@ -497,7 +497,7 @@ root
 Forwarding the CUPS port, we discover OpenPrinting CUPS 2.4.10 is running:
 
 ```
-ssh phileasfogg3@pterodactyl.htb -L 323:localhost:323
+ssh phileasfogg3@pterodactyl.htb -L 631:localhost:631
 ```
 <img src="Images/06-CUPS.png" width="600">
 
